@@ -6,9 +6,12 @@
         <meta charset="utf-8">
         <title>Calculate Coeffiecient of correlation</title>
         <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <style> 
             body { 
-                text-align:center; 
+                /* text-align:center;  */
             } 
             h1 { 
                 color:#8003fc; 
@@ -17,19 +20,65 @@
             p {
                 text-indent: 50px;
                 letter-spacing: 1px;
+                text-align: center;
             } 
             div.b {
                 word-wrap: break-word;
+            }
+            
+            /* Style the header */
+            header {
+            background-color: #b360b1;
+            padding: 25px;
+            text-align: center;
+            font-size: 25px;
+            color: white;
+            }
+
+            /* Style the footer */
+            footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
             }  
-           
+            div.inputBox{
+                padding-left: 50px;
+            } 
+                    
         </style>
     </head>
 
     <body>
-        <h1 text-align:center><strong>Calculate Coeffiecient of correlation</strong></h1>
+        <header>
+            <h1 text-align:center><strong>Calculate Coeffiecient of correlation</strong></h1>
+        </header>
+
         <div class="b"> 
         <p>To Calculate Coeffiecient of correlation please provide the required input - no. of elements , mean , x and y values</p>
-        </div>    
+        </div>   
+        <div class="inputBox" > 
+            <div class="form-group">
+                <label for="usr">No of elements (Ni):</label>
+                <input type="number" maxlength="10" id="focusedInput">
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" id="SubmitNoOfElements" onclick="getXandY()" >Submit</button>
+            </div>
+        </div> 
+        <div class="forTable" id="tableDiv">
 
+        </div>
+        <footer>
+            <p>Footer</p>
+        </footer>
+        <script>
+            function getXandY(){
+                var NoOfElements = document.getElementById("focusedInput").value ; 
+                
+                document.getElementById("tableDiv").insertAdjacentHTML("beforeend",'<table width="320" border="1" id="XandYValues"></table>');
+            }
+          
+        </script>
+          
     </body>
 </html>
