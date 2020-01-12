@@ -4,7 +4,7 @@
     
     <head>
         <meta charset="utf-8">
-        <title>Calculate Coeffiecient of correlation</title>
+        <title>Calculate Coefficient of corelation</title>
         <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -42,31 +42,46 @@
             text-align: center;
             color: white;
             }  
-            div.inputBox{
+            div.inputBox, .forTable{
                 padding-left: 50px;
             } 
+
+            /* table styling  */
+            table, th, td {
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                 padding: 2px;
+            }
                     
         </style>
     </head>
 
     <body>
         <header>
-            <h1 text-align:center><strong>Calculate Coeffiecient of correlation</strong></h1>
+            <h1 text-align:center><strong>Calculate Coefficient of correlation</strong></h1>
         </header>
 
         <div class="b"> 
-        <p>To Calculate Coeffiecient of correlation please provide the required input - no. of elements , mean , x and y values</p>
+        <p>To Calculate Coefficient of corelation please provide the required input - no. of elements , mean , x and y values</p>
         </div>   
         <div class="inputBox" > 
             <div class="form-group">
                 <label for="usr">No of elements (Ni):</label>
                 <input type="number" maxlength="10" id="focusedInput">
                 &nbsp;&nbsp;
+                <label for="usr">Mean Value :</label>
+                <input type="number" maxlength="10" id="MeanValue">
+                &nbsp;&nbsp;
                 <button type="button" class="btn btn-primary" id="SubmitNoOfElements" onclick="getXandY()" >Submit</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" id="clearElements" onclick="clearTable()" >Clear</button>
             </div>
+            
         </div> 
         <div class="forTable" id="tableDiv">
-
+           
         </div>
         <footer>
             <p>Footer</p>
@@ -74,9 +89,41 @@
         <script>
             function getXandY(){
                 var NoOfElements = document.getElementById("focusedInput").value ; 
-                
-                document.getElementById("tableDiv").insertAdjacentHTML("beforeend",'<table width="320" border="1" id="XandYValues"></table>');
+                var intNoOfElement = parseInt(NoOfElements);
+                var tdCount = 1 ; 
+
+                if (intNoOfElement > 0 ){
+                    // create table to fetch x and y values 
+                    // document.getElementById("tableDiv").insertAdjacentHTML("beforeend",'<table width="320" border="1" id="XandYValues" style="width:10%"><caption>Calculate all the values of X and Y </caption>  <thead><tr><th> S.No. </th><th> X </th><th> Y </th></tr><thead> </table>');
+                    // for( tdCount = 1 ; tdCount <= intNoOfElement ; tdCount++){ 
+                    //     document.getElementById("XandYValues").insertAdjacentHTML("beforeend",'<tr><th>'+ tdCount +'  </th><th><input type="number" name="x['+tdCount+']" maxlength="10" id="focusedInput1"></th><th><input type="number" name="y['+tdCount+']" maxlength="10" id="focusedInput4"></th></tr>');
+                    // }
+
+                    document.getElementById("tableDiv").insertAdjacentHTML("beforeend",'<form id="XandYValues" name="myform" onSubmit="JavaScript:handleClick()"> </form>');
+                    for( tdCount = 1 ; tdCount <= intNoOfElement ; tdCount++){ 
+                        document.getElementById("XandYValues").insertAdjacentHTML("beforeend",'x'+tdCount+'<input type="text" id="x'+tdCount+'" name="XValues" > y'+tdCount+'<input type="text" id="x'+tdCount+'"  name="YValues" ><br>');
+                    }
+
+                    document.getElementById("tableDiv").insertAdjacentHTML("beforeend",' </br> <button type="button" class="btn btn-primary" id="CalculateXY" onclick="calculateXnY()" >Calculate</button> </br>');
+                }    
             }
+
+            // calculate the values of x and y 
+            function calculateXnY(){
+                
+                var FormData= document.getElementById(idd).value;
+                
+                alert(FormData) ; 
+            }
+
+            // clear the table and no of elements field
+            function clearTable(){
+                
+                document.getElementById("focusedInput").value = ' ' ; 
+                document.getElementById("MeanValue").value = ' ' ; 
+                document.getElementById("XandYValues").remove() ; 
+                document.getElementById("CalculateXY").remove() ; 
+            }   
           
         </script>
           
